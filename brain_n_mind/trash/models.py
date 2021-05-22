@@ -57,14 +57,7 @@ class Level(models.Model):
 class PointWorth(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     points=models.IntegerField(default=0)
-
-
-class Text(models.Model):
-    content=models.TextField(max_length=300)
-    reduce_a=models.ForeignKey(Reduce,on_delete=models.SET_NULL)
-    reuse_a=models.ForeignKey(Reuse,on_delete=models.SET_NULL)
-    recycle_a=models.ForeignKey(Recycle,on_delete=models.SET_NULL)
-
+   
 class Reduce(models.Model):
     user_reduce=models.OneToOneField(Profile)
     filled_reduce=models.IntegerField(default=0,choices=ITEM_CHOICES1)
@@ -74,3 +67,12 @@ class Reuse(models.Model):
 class Recycle(models.Model):
     user_recycle=models.OneToOneField(Profile)
     filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES3)
+
+
+class Text(models.Model):
+    content=models.TextField(max_length=300)
+    reduce_a=models.ForeignKey(Reduce,on_delete=models.SET_NULL)
+    reuse_a=models.ForeignKey(Reuse,on_delete=models.SET_NULL)
+    recycle_a=models.ForeignKey(Recycle,on_delete=models.SET_NULL)
+
+
