@@ -50,7 +50,7 @@ class Profile(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     country=models.CharField(max_length=200,blank=True)
 class Level(models.Model):
-    user=models.OneToOneField(Profile)
+    user=models.OneToOneField(Profile,on_delete=models.CASCADE)
     number=models.IntegerField(default=1,choices=LEVEL_CHOICES)
     
 class PointWorth(models.Model):
@@ -59,14 +59,14 @@ class PointWorth(models.Model):
 
 
 class Reduce(models.Model):
-    user_reduce=models.OneToOneField(Profile)
+    user_reduce=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_reduce=models.IntegerField(default=0,choices=ITEM_CHOICES1)
     text_reduce=models.ArrayField(models.TextField(max_length=400))
 class Reuse(models.Model):
-    user_reuse=models.OneToOneField(Profile)
+    user_reuse=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_reuse=models.IntegerField(default=0,choices=ITEM_CHOICES2)
     text_reuse=models.ArrayField(models.TextField(max_length=400))
 class Recycle(models.Model):
-    user_recycle=models.OneToOneField(Profile)
+    user_recycle=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES)
     text_recycle=models.ArrayField(models.TextField(max_length=400))
