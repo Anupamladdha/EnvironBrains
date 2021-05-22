@@ -46,7 +46,7 @@ class Profile(models.Model):
     last=models.CharField(max_length=100,blank=False,null=False)
     img=models.ImageField(default="enviro.png",upload_to="/profilepics")
     email=models.EmailField(max_length=200,blank=True)
-    bio=models.TextField(default="Save Earth!",,blank=True)
+    bio=models.TextField(default="Save Earth!",blank=True)
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     country=models.CharField(max_length=200,blank=True)
 class Level(models.Model):
@@ -64,5 +64,5 @@ class Reuse(models.Model):
     text_reuse=models.ArrayField(models.TextField(max_length=400))
 class Recycle(models.Model):
     user_recycle=models.OneToOneField(Profile)
-    filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES3)
+    filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES)
     text_recycle=models.ArrayField(models.TextField(max_length=400))
