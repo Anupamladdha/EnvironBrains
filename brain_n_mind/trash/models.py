@@ -45,7 +45,7 @@ ITEM_CHOICES=((0,0),
 class Profile(models.Model):
     first=models.CharField(max_length=100,blank=False,null=False)
     last=models.CharField(max_length=100,blank=False,null=False)
-    img=models.ImageField(default="enviro.png",upload_to="/profilepics")
+    img=models.ImageField(default="enviro.png")
     email=models.EmailField(max_length=200,blank=True)
     bio=models.TextField(default="Save Earth!",blank=True)
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
@@ -59,20 +59,20 @@ class PointWorth(models.Model):
     points=models.IntegerField(default=0)
    
 class Reduce(models.Model):
-    user_reduce=models.OneToOneField(Profile)
+    user_reduce=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_reduce=models.IntegerField(default=0,choices=ITEM_CHOICES1)
 class Reuse(models.Model):
-    user_reuse=models.OneToOneField(Profile)
+    user_reuse=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_reuse=models.IntegerField(default=0,choices=ITEM_CHOICES2)
 class Recycle(models.Model):
-    user_recycle=models.OneToOneField(Profile)
-    filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES3)
+    user_recycle=models.OneToOneField(Profile,on_delete=models.CASCADE)
+    filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES2)
 
 
 class Text(models.Model):
     content=models.TextField(max_length=300)
-    reduce_a=models.ForeignKey(Reduce,on_delete=models.SET_NULL)
-    reuse_a=models.ForeignKey(Reuse,on_delete=models.SET_NULL)
-    recycle_a=models.ForeignKey(Recycle,on_delete=models.SET_NULL)
+    reduce_a=models.ForeignKey(Reduce,on_delete=models.CASCADE)
+    reuse_a=models.ForeignKey(Reuse,on_delete=models.CASCADE)
+    recycle_a=models.ForeignKey(Recycle,on_delete=models.CASCADE)
 
 
