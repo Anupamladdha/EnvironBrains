@@ -59,15 +59,18 @@ class PointWorth(models.Model):
     points=models.IntegerField(default=0)
 
 
+class Text(models.Model):
+    content=models.TextField(max_length=300)
+    reduce_a=models.ForeignKey(Reduce,on_delete=models.SET_NULL)
+    reuse_a=models.ForeignKey(Reuse,on_delete=models.SET_NULL)
+    recycle_a=models.ForeignKey(Recycle,on_delete=models.SET_NULL)
+
 class Reduce(models.Model):
-    user_reduce=models.OneToOneField(Profile,on_delete=models.CASCADE)
+    user_reduce=models.OneToOneField(Profile)
     filled_reduce=models.IntegerField(default=0,choices=ITEM_CHOICES1)
-    text_reduce=ArrayField(models.TextField(max_length=400))
 class Reuse(models.Model):
-    user_reuse=models.OneToOneField(Profile,on_delete=models.CASCADE)
+    user_reuse=models.OneToOneField(Profile)
     filled_reuse=models.IntegerField(default=0,choices=ITEM_CHOICES2)
-    text_reuse=ArrayField(models.TextField(max_length=400))
 class Recycle(models.Model):
-    user_recycle=models.OneToOneField(Profile,on_delete=models.CASCADE)
-    filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES)
-    text_recycle=ArrayField(models.TextField(max_length=400))
+    user_recycle=models.OneToOneField(Profile)
+    filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES3)
