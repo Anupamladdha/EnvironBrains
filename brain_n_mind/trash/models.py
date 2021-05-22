@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
 from django.shortcuts import reverse
+from django.contrib.postgres.fields import ArrayField
 LEVEL_CHOICES=((1,1),
 (2,2),
 (3,3),
@@ -61,12 +62,12 @@ class PointWorth(models.Model):
 class Reduce(models.Model):
     user_reduce=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_reduce=models.IntegerField(default=0,choices=ITEM_CHOICES1)
-    text_reduce=models.ArrayField(models.TextField(max_length=400))
+    text_reduce=ArrayField(models.TextField(max_length=400))
 class Reuse(models.Model):
     user_reuse=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_reuse=models.IntegerField(default=0,choices=ITEM_CHOICES2)
-    text_reuse=models.ArrayField(models.TextField(max_length=400))
+    text_reuse=ArrayField(models.TextField(max_length=400))
 class Recycle(models.Model):
     user_recycle=models.OneToOneField(Profile,on_delete=models.CASCADE)
     filled_recycle=models.IntegerField(default=0,choices=ITEM_CHOICES)
-    text_recycle=models.ArrayField(models.TextField(max_length=400))
+    text_recycle=ArrayField(models.TextField(max_length=400))
