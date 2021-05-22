@@ -52,6 +52,10 @@ class Profile(models.Model):
 class Level(models.Model):
     user=models.OneToOneField(Profile)
     number=models.IntegerField(default=1,choices=LEVEL_CHOICES)
+    
+class PointWorth(models.Model):
+    user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    points=models.IntegerField(default=0)
 
 
 class Reduce(models.Model):
