@@ -6,5 +6,6 @@ from .views import *
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('datetime/', current_datetime),
-    path('user/profile/', getUserProfile)
+    path('user/profile/', getUserProfile),
+    path('user/data', getUserData)
 ]
