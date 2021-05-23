@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from django.http import HttpResponse
@@ -10,8 +11,9 @@ def current_datetime(request):
     return HttpResponse(html)
 
 def getUserProfile(request):
-    context = {
+    return render(request, 'userProfile.html', {})
 
-    }
-
-    return render(request, 'userProfile.html', context)
+@login_required
+def getUserData(request):
+    context = {}
+    return render(request, 'userData.html', context)
