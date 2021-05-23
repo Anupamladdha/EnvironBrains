@@ -9,3 +9,9 @@ def current_datetime(request):
     html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html)
 
+def getUserProfile(request):
+    context = {
+
+    }
+
+    return render(request, 'userProfile.html', context)
